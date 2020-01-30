@@ -13,9 +13,11 @@ window.addEventListener("DOMContentLoaded", function() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    canvas.addEventListener("mousedown", () => {
+    canvas.addEventListener("mousedown", function(e) {
         isMouseDown = true;
+        print(e);
     });
+
     canvas.addEventListener("mouseup", () => {
         isMouseDown = false;
         ctx.beginPath();
@@ -83,8 +85,8 @@ window.addEventListener("DOMContentLoaded", function() {
         ctx.fillStyle = "black";
     }
 
-    function print(e, touch) {
-        if (isMouseDown || touch) {
+    function print(e) {
+        if (isMouseDown) {
             let x = e.clientX,
                 y = e.clientY;
             drawingLine(x, y);
