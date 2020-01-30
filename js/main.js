@@ -43,10 +43,14 @@ window.addEventListener("DOMContentLoaded", function() {
     });
 
     function save() {
-        let prevCoords = JSON.parse(localStorage.getItem("coords")),
-            complexCoords = prevCoords.concat(coords);
+        if (localStorage.getItem("coords") !== null) {
+            let prevCoords = JSON.parse(localStorage.getItem("coords")),
+                concatCoords = prevCoords.concat(coords);
 
-        localStorage.setItem("coords", JSON.stringify(complexCoords));
+            localStorage.setItem("coords", JSON.stringify(concatCoords));
+            return;
+        }
+        localStorage.setItem("coords", JSON.stringify(coords));
     }
 
     function play() {
