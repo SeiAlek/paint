@@ -1,7 +1,18 @@
 body {
     margin: 0;
+    position: relative;
 }
 
 canvas {
     display: block;
+}
+
+#control {
+    background-color: brown;
+    border-radius: 5px;
+    height: 60px;
+    width: 300px;
+    position: fixed;
+    right: 20px;
+    top: 20px;
 }
