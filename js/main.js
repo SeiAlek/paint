@@ -87,20 +87,51 @@ window.addEventListener("DOMContentLoaded", function() {
         if (isMouseDown) {
             let x = e.clientX,
                 y = e.clientY;
+            drawingLine(x, y);
+        }
+    }
+    function drawingLine(x, y) {
+        coords.push([x, y]);
 
-            coords.push([x, y]);
+        ctx.lineWidth = lineWidth;
 
-            ctx.lineWidth = lineWidth;
+        ctx.lineTo(x, y);
+        ctx.stroke();
 
-            ctx.lineTo(x, y);
-            ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(x, y, lineWidth / 2, 0, Math.PI * 2);
+        ctx.fill();
 
-            ctx.beginPath();
-            ctx.arc(x, y, lineWidth / 2, 0, Math.PI * 2);
-            ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+    }
 
-            ctx.beginPath();
-            ctx.moveTo(x, y);
+    // touch
+
+    canvas.addEventListener("touchstart", handleStart, false);
+    canvas.addEventListener("touchend", handleEnd, false);
+    canvas.addEventListener("touchcancel", handleCancel, false);
+    canvas.addEventListener("touchmove", handleMove, false);
+
+    function handleStart(e) {
+        //onsole.log("touchstart.");
+    }
+
+    function handleEnd(e) {
+        //console.log("touchend.");
+        ctx.beginPath();
+        coords.push("mouseup");
+    }
+    function handleCancel(e) {
+        //console.log("touchcancel.");
+    }
+    function handleMove(e) {
+        //console.log(e.changedTouches);
+        let touches = e.changedTouches;
+        for (let i = 0; i < touches.length; i++) {
+            let x = touches[i].pageX,
+                y = touches[i].pageY;
+            drawingLine(x, y);
         }
     }
 });
