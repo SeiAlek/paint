@@ -116,19 +116,19 @@ window.addEventListener("DOMContentLoaded", function() {
     canvas.addEventListener("touchmove", handleMove, false);
 
     function handleStart(e) {
-        //onsole.log("touchstart.");
+        e.preventDefault();
     }
 
     function handleEnd(e) {
-        //console.log("touchend.");
+        e.preventDefault();
         ctx.beginPath();
         coords.push("mouseup");
     }
     function handleCancel(e) {
-        //console.log("touchcancel.");
+        e.preventDefault();
     }
     function handleMove(e) {
-        //console.log(e.changedTouches);
+        e.preventDefault();
         let touches = e.changedTouches;
         for (let i = 0; i < touches.length; i++) {
             let x = touches[i].pageX,
